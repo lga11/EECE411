@@ -46,14 +46,28 @@ public class Client implements ChatUserInterface {
 
 	public static void main(String[] argv) {
 		try {
-			ChatRoomInterface chatRoom = (ChatRoomInterface) Naming.lookup("");
-			Client client = new Client("ME");
-			client.register(chatRoom);
+			ChatRoomInterface chatRoom = (ChatRoomInterface) Naming.lookup("rmi://localhost/ChatRoom");
+			ChatUserInterface client = new Client("ME");
+			
+			try {
+				if (!chatRoom.register(client)) {
+					System.out.println("Failed to connected to chat room..");
+				} else {
+					System.out.println("Successed to connected to chat room..");
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 
 			BufferedReader bufferRead = new BufferedReader(
 					new InputStreamReader(System.in));
 			String s = bufferRead.readLine();
-			client.send(chatRoom, s);
+			
+			try {
+				chatRoom.sendMessage("ME" + ": " + s);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

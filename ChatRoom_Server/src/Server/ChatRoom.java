@@ -28,7 +28,7 @@ public class ChatRoom extends UnicastRemoteObject implements ChatRoomInterface {
 	}
 
 	@Override
-	public boolean register(Object client) throws RemoteException {
+	public boolean register(ChatUserInterface client) throws RemoteException {
 		if(client == null){
 			return false;
 		}
