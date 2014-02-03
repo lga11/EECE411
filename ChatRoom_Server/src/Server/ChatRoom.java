@@ -43,6 +43,9 @@ public class ChatRoom extends UnicastRemoteObject implements ChatRoomInterface {
 			return;
 		
 		this.message = message;
+		System.out.println("Message from client: "+ this.message);
+		
+		this.broadcastMessage();
 		
 	}
 

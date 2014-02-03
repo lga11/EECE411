@@ -64,6 +64,7 @@ public class Client extends UnicastRemoteObject implements ChatUserInterface {
 				e.printStackTrace();
 			}
 
+			System.out.println("Please enter message");
 			BufferedReader bufferRead = new BufferedReader(
 					new InputStreamReader(System.in));
 			String s = bufferRead.readLine();
@@ -85,7 +86,7 @@ public class Client extends UnicastRemoteObject implements ChatUserInterface {
 			return false;
 
 		else {
-			System.out.println(message);
+			System.out.println("Message from Server : "+message);
 			return true;
 		}
 	}
