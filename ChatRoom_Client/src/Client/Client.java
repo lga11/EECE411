@@ -14,7 +14,7 @@ public class Client extends UnicastRemoteObject implements ChatUserInterface {
 
 	private String userName;
 
-	public Client(String userName) throws RemoteException {
+	public Client(String userName) throws RemoteException{
 		this.userName = userName;
 	}
 
