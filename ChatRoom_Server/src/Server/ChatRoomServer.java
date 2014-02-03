@@ -1,5 +1,6 @@
 package Server;
 
+import java.net.InetAddress;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 
@@ -10,10 +11,15 @@ public class ChatRoomServer {
 				System.setSecurityManager(new RMISecurityManager());
 			}
 
-			ChatRoom chatRoom = new ChatRoom();
-			Naming.rebind("rmi://localhost/ChatRoom", chatRoom);
+			String serverHostName = InetAddress.getLocalHost().getHostName();
+			String serverIpAddress = InetAddress.getLocalHost()
+					.getHostAddress();
 
-			System.out.println("ChatRoom Server is ready.");
+			ChatRoomImpl chatRoom = new ChatRoomImpl();
+			Naming.rebind("ChatRoom", chatRoom);
+
+			System.out.println("ChatRoom is running on server : "
+					+ serverHostName + " @ " + serverIpAddress);
 		} catch (Exception e) {
 			System.out.println("ChatRoom Server failed: " + e);
 		}
