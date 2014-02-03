@@ -15,7 +15,7 @@ public class Client {
 			}
 
 			ChatRoomInterface chatRoom = (ChatRoomInterface) Naming
-					.lookup("//dhcp-128-189-255-116.ubcsecure.wireless.ubc.ca/ChatRoom");
+					.lookup("rmi://localhost/ChatRoom");
 
 			ChatUserImpl client = new ChatUserImpl("ME");
 
