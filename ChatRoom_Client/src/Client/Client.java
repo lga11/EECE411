@@ -4,11 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
 import Interface.ChatRoomInterface;
-import Interface.ChatUserInterface;
 
 public class Client {
 	public static void main(String[] argv) {
@@ -19,7 +15,7 @@ public class Client {
 			}
 
 			ChatRoomInterface chatRoom = (ChatRoomInterface) Naming
-					.lookup("rmi://localhost/ChatRoom");
+					.lookup("//dhcp-128-189-255-116.ubcsecure.wireless.ubc.ca/ChatRoom");
 
 			ChatUserImpl client = new ChatUserImpl("ME");
 
