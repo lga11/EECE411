@@ -5,15 +5,16 @@ import java.io.InputStreamReader;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import Interface.ChatRoomInterface;
 import Interface.ChatUserInterface;
 
-public class Client implements ChatUserInterface {
+public class Client extends UnicastRemoteObject implements ChatUserInterface {
 
 	private String userName;
 
-	public Client(String userName) {
+	public Client(String userName) throws RemoteException {
 		this.userName = userName;
 	}
 
