@@ -1,4 +1,5 @@
 package Client;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.rmi.Naming;
@@ -7,27 +8,37 @@ import java.rmi.RemoteException;
 import Interface.ChatRoomInterface;
 import Interface.ChatUserInterface;
 
-public class Client implements ChatUserInterface{
+public class Client implements ChatUserInterface {
 
-	private ChatRoomInterface chatRoom;
 	private String userName;
 
 	public Client(String userName) {
 		this.userName = userName;
 	}
 
-	private void connect(ChatRoomInterface chatRoom) {
-		this.chatRoom = chatRoom;
+	private void register(ChatRoomInterface chatRoom) {
+		if (chatRoom == null) {
+			return;
+		}
+		try {
+			if (!chatRoom.register(this)) {
+				System.out.println("Failed to connected to chat room..");
+			} else {
+				System.out.println("Successed to connected to chat room..");
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 	}
 
-	private void send(String message) {
-		if (message == null) {
+	private void send(ChatRoomInterface chatRoom, String message) {
+		if (message == null || chatRoom == null) {
 			return;
 		}
 
 		try {
-			this.chatRoom.sendMessage(message);
+			chatRoom.sendMessage(this.userName + ": " + message);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -37,13 +48,12 @@ public class Client implements ChatUserInterface{
 		try {
 			ChatRoomInterface chatRoom = (ChatRoomInterface) Naming.lookup("");
 			Client client = new Client("ME");
-			client.connect(chatRoom);
+			client.register(chatRoom);
 
-			System.out.println("Connected to chat room : ");
 			BufferedReader bufferRead = new BufferedReader(
 					new InputStreamReader(System.in));
 			String s = bufferRead.readLine();
-			client.send(s);
+			client.send(chatRoom, s);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,9 +61,14 @@ public class Client implements ChatUserInterface{
 	}
 
 	@Override
-	public boolean broadCastMessage() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean broadCastMessage(String message) {
+		if (message == null)
+			return false;
+
+		else {
+			System.out.println(message);
+			return true;
+		}
 	}
 
 }

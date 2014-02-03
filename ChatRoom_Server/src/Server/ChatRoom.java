@@ -3,11 +3,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import Interface.ChatRoomInterface;
+import Interface.ChatUserInterface;
 
 
 public class ChatRoom extends UnicastRemoteObject implements ChatRoomInterface {
 	
 	private Object client;
+	private String message;
 
 	protected ChatRoom() throws RemoteException {
 		super();
@@ -15,7 +17,13 @@ public class ChatRoom extends UnicastRemoteObject implements ChatRoomInterface {
 	}
 	
 	public void broadcastMessage() throws RemoteException {
-		// TODO Auto-generated method stub
+		if(!(this.client instanceof ChatUserInterface))
+			System.out.println("Wrong type of client");
+		
+		if(((ChatUserInterface)this.client).broadCastMessage(this.message))
+			System.out.println("broadcast succeed");
+		else
+			System.out.println("boradcast failed");
 		
 	}
 
@@ -26,14 +34,15 @@ public class ChatRoom extends UnicastRemoteObject implements ChatRoomInterface {
 		}
 		
 		this.client = client;
-		
-		return true;
-		
+		return true;	
 	}
 
 	@Override
 	public void sendMessage(String message) throws RemoteException {
-		// TODO Auto-generated method stub
+		if(message == null)
+			return;
+		
+		this.message = message;
 		
 	}
 
