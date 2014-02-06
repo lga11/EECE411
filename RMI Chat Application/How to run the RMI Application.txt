@@ -2,18 +2,18 @@ How to run the program:
 
 Running RMIRegistry
 1. Open cmd
-2. cd C:\Users\Lu\310Projects\RMI Chat Application\bin
+2. cd <path:>\RMI Chat Application\bin e.g. C:\Users\Lu\310Projects\RMI Chat Application\bin
 3. rmic com.rmi.server.ChatServer
 4. rmic com.rmi.client.ChatClient
 5. rmiregistry (make sure rmiregistry is closed on other applications, such as Eclipse)
 
 Running Server
 6. Open another cmd
-7. cd C:\Users\Lu\310Projects\RMI Chat Application\bin
+7. cd <path:>\RMI Chat Application\bin 
 8. java com.rmi.server.ChatServerDriver
 
 Running Clients
 9. Open another cmd
-10. cd C:\Users\Lu\310Projects\RMI Chat Application\bin
+10. cd <path:>\RMI Chat Application\bin 
 11. java com.rmi.client.ChatClientDriver <name of client> e.g. java com.rmi.client.ChatClientDriver Lu
 12. You can add as many clients as possible by openning up more cmd and run ChatClientDriver
