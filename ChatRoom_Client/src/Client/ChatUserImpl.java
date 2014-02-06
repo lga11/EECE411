@@ -8,6 +8,7 @@ import Interface.ChatUserInterface;
 
 public class ChatUserImpl extends UnicastRemoteObject implements ChatUserInterface {
 	
+	private static final long serialVersionUID = 1L;
 	private String userName;
 
 	protected ChatUserImpl(String userName) throws RemoteException {

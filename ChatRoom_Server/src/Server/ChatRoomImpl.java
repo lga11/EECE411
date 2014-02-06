@@ -11,6 +11,7 @@ import Interface.ChatUserInterface;
 public class ChatRoomImpl extends UnicastRemoteObject implements
 		ChatRoomInterface {
 
+	private static final long serialVersionUID = 1L;
 	private List<Object> clients;
 	private String message;
 

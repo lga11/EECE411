@@ -20,7 +20,7 @@ public class Client {
 			ChatUserImpl client = new ChatUserImpl("ME");
 
 			if (client.register(chatRoom)) {
-				System.out.println("Please enter message");
+				System.out.println("Please enter message:");
 				BufferedReader bufferRead = new BufferedReader(
 						new InputStreamReader(System.in));
 				String s = bufferRead.readLine();
