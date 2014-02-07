@@ -3,6 +3,7 @@ package com.rmi.server;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 
 /*
@@ -14,6 +15,11 @@ public class ChatServerDriver
 	{
 		try 
 		{
+			if (System.getSecurityManager() == null) 
+			{
+				System.setSecurityManager(new RMISecurityManager());
+			}
+			
 			String serverHostName = InetAddress.getLocalHost().getHostName();
 			String serverIpAddress = InetAddress.getLocalHost()
 					.getHostAddress();

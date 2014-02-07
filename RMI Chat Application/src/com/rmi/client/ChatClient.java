@@ -41,7 +41,7 @@ public class ChatClient extends UnicastRemoteObject implements ChatClientIF, Run
 				//Broadcasting messages
 				chatServer.broadcastMessage(name + " : " + message);
 			} catch (RemoteException e){
-				e.printStackTrace();
+				System.out.println("ChatRoom Server failed: " + e);
 			}
 		} //End while loop
 	} //End runnable

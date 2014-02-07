@@ -35,7 +35,7 @@ public class ChatClientDriver
 		} 
 		catch (Exception e) 
 		{
-			e.printStackTrace();
+			System.out.println("Client Registration failed: " + e);
 		} //End exception
 		
 	} //End main
